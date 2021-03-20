@@ -2,28 +2,9 @@ const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const app = express();
-
-app.get('/', (req, res) => {
-   res.render('index', {
-       title: "Main page",
-       isMain: true
-   }); 
-});
-
-// 2nd arg  приблизительно похож на пропсы
-app.get('/courses', (req, res) => {
-    res.render('courses', {
-        title: "Courses",
-        isCourses: true
-    });
- });
-
- app.get('/addCourse', (req, res) => {
-    res.render('addCourse', {
-        title: "Add Course",
-        isAddCourse: true
-    });
- });
+const coursesRoutes = require('./routes/courses');
+const homeRoutes = require('./routes/home');
+const addRoutes = require('./routes/add');
 
 // conf hbs for express
 const hbs = exphbs.create({
@@ -42,7 +23,9 @@ app.use(express.static("public"))
  // configurate PORT 
 const PORT = process.env.PORT || 3000;
 
-
+app.use('/', homeRoutes);
+app.use('/courses', coursesRoutes);
+app.use('/addcourse', addRoutes);
 
 app.listen(3000 , () => {
     console.log(`Server is running on port: ${PORT}`)
