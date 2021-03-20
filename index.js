@@ -23,8 +23,8 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 // регистрация папки под страницы
 app.set('views', 'views');
-
-
+// Конфигурация статичной ссылки
+app.use(express.static("public"))
 
  // configurate PORT 
 const PORT = process.env.PORT || 3000;
