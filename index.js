@@ -4,13 +4,26 @@ const exphbs = require('express-handlebars');
 const app = express();
 
 app.get('/', (req, res) => {
-   res.render('index'); 
+   res.render('index', {
+       title: "Main page",
+       isMain: true
+   }); 
 });
 
-app.get('/about', (req, res) => {
-    res.render('about');
+// 2nd arg  приблизительно похож на пропсы
+app.get('/courses', (req, res) => {
+    res.render('courses', {
+        title: "Courses",
+        isCourses: true
+    });
  });
 
+ app.get('/addCourse', (req, res) => {
+    res.render('addCourse', {
+        title: "Add Course",
+        isAddCourse: true
+    });
+ });
 
 // conf hbs for express
 const hbs = exphbs.create({

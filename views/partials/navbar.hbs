@@ -2,9 +2,25 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">Приложение Курсов</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/">Main PAGE</a></li>
-        <li><a href="/about">About Page</a></li>
-        <li><a href="/add">Add Courses</a></li>
+
+        {{#if isMain}}
+            <li class="active"><a href="/" >Main PAGE</a></li>
+        {{else}}
+            <li><a href="/">Main PAGE</a></li>
+        {{/if}}
+        
+        {{#if isCourses}}
+          <li class="active"><a href="/courses" >Courses</a></li>
+        {{else}}
+          <li><a href="/courses">Courses</a></li>
+        {{/if}}
+        
+        {{#if isAddCourse}}
+          <li class="active" ><a href="/addCourse" >Add Courses</a></li>
+        {{else}}
+          <li><a href="/addCourse">Add Courses</a></li>
+        {{/if}}
+          
       </ul>
     </div>
   </nav>
