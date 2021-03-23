@@ -3,18 +3,18 @@ const router = Router();
 const Card = require("../models/card");
 const Course = require("../models/course");
 
-router.post("/add", async (req , res) => {
-    const course = await Course.getById(req.body.id);
-
+router.get("/add/:id", async (req , res) => {
+    const course = await Course.getById(req.params.id);
     await Card.add(course);
-    res.redirect('/card')
+    res.redirect(`/card`)
 })
 
-router.get("/", async () => {
+router.get("/", async (req, res) => {
     const card = await Card.fetch();
     res.render('card', {
         title: "Basket",
-        card: card,
+        courses: card.courses,
+        cost: card.cost,
         isCard: true,
     })
 });
