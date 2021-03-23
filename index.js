@@ -5,6 +5,7 @@ const app = express();
 const coursesRoutes = require('./routes/courses');
 const homeRoutes = require('./routes/home');
 const addRoutes = require('./routes/add');
+const cardRoutes = require('./routes/card');
 
 // conf hbs for express
 const hbs = exphbs.create({
@@ -28,7 +29,7 @@ app.use(express.urlencoded({extended:true}));
 app.use('/', homeRoutes);
 app.use('/courses', coursesRoutes);
 app.use('/addcourse', addRoutes);
-
+app.use('/card', cardRoutes);
 app.listen(3000 , () => {
     console.log(`Server is running on port: ${PORT}`)
 })
