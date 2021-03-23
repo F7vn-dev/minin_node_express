@@ -1,1 +1,27 @@
 <h1>Basket</h1>
+
+{{#if courses.length}}
+<table>
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Количество</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each courses}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{count}}</td>
+            <td>
+                <button type="button" class="btn btn-small">Удалить</button>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<p><strong>Цена: </strong><span class="cost">{{cost}}</span></p>
+{{else}}
+    <p>Корзина Пуста</p> 
+{{/if}}
