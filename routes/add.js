@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
         title: req.body.title,
         cost: req.body.cost,
         img: req.body.img,
+        userId: req.user,
     })
     try {
         await course.save();
