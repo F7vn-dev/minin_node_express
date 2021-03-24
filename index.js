@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const app = express();
 const coursesRoutes = require('./routes/courses');
@@ -24,12 +25,26 @@ app.use(express.static(path.join(__dirname, "public")))
  // configurate PORT 
 const PORT = process.env.PORT || 3000;
 
+// const pass = ubVdJVnIDVVyCdps
+// mongodb+srv://f7vn:ubVdJVnIDVVyCdps@cluster0.ab8ao.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
 app.use(express.urlencoded({extended:true}));
 
 app.use('/', homeRoutes);
 app.use('/courses', coursesRoutes);
 app.use('/addcourse', addRoutes);
 app.use('/card', cardRoutes);
-app.listen(3000 , () => {
-    console.log(`Server is running on port: ${PORT}`)
-})
+
+async function start() {
+    try {
+        const url = "mongodb+srv://f7vn:ubVdJVnIDVVyCdps@cluster0.ab8ao.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+        await mongoose.connect(url, {useNewUrlParser: true});
+        app.listen(PORT , () => {
+        console.log(`Server is running on port: ${PORT}`)
+    })
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+start();
