@@ -48,6 +48,35 @@ static async fetch() {
     })
 }
 
+static async remove(id) {
+  const card = await Card.fetch();
+  console.log(card)
+  const idx = card.courses.findIndex(c => c.id === id);
+  console.log(idx)
+  const course = card.courses[idx]
+  console.log(course)
+  console.log("HERE");
+  if (course.count === 1) {
+    console.log("1");
+    card.courses = card.courses.filter(c => c.id !== id)
+  } else {
+    console.log(">1");
+    card.courses[idx].count--;
+  }
+
+  card.cost -= course.cost
+ 
+  return new Promise((resolve, reject) => {
+    fs.writeFile(p, JSON.stringify(card), err => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(card)
+      }
+    })
+  })
+} 
+
 }
 
 module.exports = Card
