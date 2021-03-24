@@ -13,7 +13,6 @@ static async add(course) {
     const card = await Card.fetch();
     const idx = card.courses.findIndex(c => c.id === course.id);
     const candidate = card.courses[idx];
-    console.log(candidate)
     if (candidate) {
         candidate.count++;
         card.courses[idx] = candidate; 
@@ -50,17 +49,13 @@ static async fetch() {
 
 static async remove(id) {
   const card = await Card.fetch();
-  console.log(card)
   const idx = card.courses.findIndex(c => c.id === id);
-  console.log(idx)
   const course = card.courses[idx]
-  console.log(course)
-  console.log("HERE");
   if (course.count === 1) {
-    console.log("1");
     card.courses = card.courses.filter(c => c.id !== id)
   } else {
-    console.log(">1");
+
+
     card.courses[idx].count--;
   }
 
