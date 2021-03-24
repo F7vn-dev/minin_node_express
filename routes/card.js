@@ -4,7 +4,7 @@ const Card = require("../models/card");
 const Course = require("../models/course");
 
 router.get("/add/:id", async (req , res) => {
-    const course = await Course.getById(req.params.id);
+    const course = await Course.findById(req.params.id);
     await Card.add(course);
     res.redirect(`/card`)
 })

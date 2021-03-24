@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/F7vn-dev/minin_node_express#readme",
   "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
     "mongoose": "^5.12.2",
